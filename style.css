@@ -1,0 +1,91 @@
+body{
+    align-items: center;
+    text-align: center;
+}
+img{
+    width: 20%;
+    height: 20%;
+}
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Estilos para los acordeones */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.accordion {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.accordion-header {
+    background-color: #eee;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.accordion-header:hover {
+    background-color: #ddd;
+}
+
+.accordion-header::after {
+    content: '+';
+    float: right;
+}
+
+.accordion-header.active::after {
+    content: '-';
+}
+
+.accordion-content {
+    padding: 10px;
+    display: none;
+}
+
+/* Estilos específicos para cada acordeón */
+.accordion-blue .accordion-header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.accordion-green .accordion-header {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.accordion-orange .accordion-header {
+    background-color: #fd7e14;
+    color: #fff;
+}
+
+.accordion-purple .accordion-header {
+    background-color: #6f42c1;
+    color: #fff;
+}
+
+.accordion-red .accordion-header {
+    background-color: #dc3545;
+    color: #fff;
+}
