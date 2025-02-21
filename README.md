@@ -392,10 +392,16 @@ El mérito de este proyecto radica en la modernización de una empresa que gesti
 
 A continuación, se presentan algunos pantallazos de la aplicación:
 
-![Screenshot 2025-02-21 144556](https://github.com/user-attachments/assets/b4d533dc-42e0-4d30-9419-eed405383f18)
+
 ![Screenshot 2025-02-21 144607](https://github.com/user-attachments/assets/3fef7e88-a72e-4df6-9937-cfff72925a51)
+
+
 ![Screenshot 2025-02-21 144622](https://github.com/user-attachments/assets/58694da2-b1df-4969-89b9-e8b2987b0284)
+
+
 ![Screenshot 2025-02-21 144630](https://github.com/user-attachments/assets/4f641cad-511e-4604-bfb2-f9378f4d3e5c)
+
+
 ![Screenshot 2025-02-21 144650](https://github.com/user-attachments/assets/9399192c-7de6-4274-9910-300415039b71)
 
 
