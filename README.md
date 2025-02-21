@@ -4,17 +4,17 @@ Este proyecto es una aplicación web para registrar y gestionar la venta de gase
 
 ## ✨ Características
 
-- 📋 Registro de ventas de gaseosas con detalles como sabor, cantidad, tamaño, valor total, estado, modo de pago y nombre de la persona.
-- 🔍 Filtrado de registros por fecha, modo de pago, tamaño, cantidad y estado.
-- ✏️ Edición y 🗑️ eliminación de registros existentes.
-- 📱 Diseño responsivo que se adapta a diferentes tamaños de pantalla.
+- Registro de ventas de gaseosas con detalles como sabor, cantidad, tamaño, valor total, estado, modo de pago y nombre de la persona.
+- Filtrado de registros por fecha, modo de pago, tamaño, cantidad y estado.
+- Edición y eliminación de registros existentes.
+- Diseño responsivo que se adapta a diferentes tamaños de pantalla.
 
 ## 🛠️ Tecnologías Utilizadas
 
-- 🌐 HTML5
-- 🎨 Tailwind CSS
-- 📜 JavaScript
-- 🌟 Font Awesome
+- HTML5
+- Tailwind CSS
+- JavaScript
+- Font Awesome
 
 ## 📁 Estructura del Proyecto
 
@@ -31,15 +31,15 @@ Este proyecto es una aplicación web para registrar y gestionar la venta de gase
 
 ## 🛠️ Instalación
 
-1. 🌀 Clona el repositorio en tu máquina local.
+1. Clona el repositorio en tu máquina local.
    ```bash
    git clone <URL_DEL_REPOSITORIO>
    ```
-2. 📂 Navega al directorio del proyecto.
+2. Navega al directorio del proyecto.
    ```bash
    cd /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2
    ```
-3. 📦 Instala las dependencias de Tailwind CSS.
+3. Instala las dependencias de Tailwind CSS.
    ```bash
    npm install
    ```
@@ -75,23 +75,23 @@ module.exports = {
 
 ### 📝 Registro de Gaseosas
 
-1. 🌐 Abre el archivo `index.html` en tu navegador.
-2. 🖊️ Completa el formulario de registro con los detalles de la gaseosa.
-3. ✔️ Haz clic en el botón "Registrar Gaseosa" para abrir el modal de confirmación.
-4. ✅ Confirma el registro para agregar la gaseosa a la lista.
+1. Abre el archivo `index.html` en tu navegador.
+2. Completa el formulario de registro con los detalles de la gaseosa.
+3. Haz clic en el botón "Registrar Gaseosa" para abrir el modal de confirmación.
+4. Confirma el registro para agregar la gaseosa a la lista.
 
 ### 🔍 Filtrado de Registros
 
-1. 🗂️ Utiliza los campos de filtro para seleccionar los criterios deseados.
-2. 🔍 Haz clic en "Aplicar Filtros" para ver los registros que coinciden con los criterios.
-3. ❌ Haz clic en "Eliminar Filtros" para restablecer los filtros y ver todos los registros.
+1. Utiliza los campos de filtro para seleccionar los criterios deseados.
+2. Haz clic en "Aplicar Filtros" para ver los registros que coinciden con los criterios.
+3. Haz clic en "Eliminar Filtros" para restablecer los filtros y ver todos los registros.
 
 ### ✏️🗑️ Edición y Eliminación de Registros
 
-1. ✏️ Haz clic en el icono de edición junto al registro que deseas editar.
-2. 🖊️ Completa los campos en el modal de edición y haz clic en "Guardar".
-3. 🗑️ Haz clic en el icono de eliminación junto al registro que deseas eliminar.
-4. ✅ Confirma la eliminación en el modal de confirmación.
+1. Haz clic en el icono de edición junto al registro que deseas editar.
+2. Completa los campos en el modal de edición y haz clic en "Guardar".
+3. Haz clic en el icono de eliminación junto al registro que deseas eliminar.
+4. Confirma la eliminación en el modal de confirmación.
 
 ## 📱💻 Diseño Responsivo
 
@@ -236,15 +236,83 @@ body {
 /* ...existing code... */
 ```
 
+## 📦 Dependencias
+
+### Dependencias de Tailwind CSS
+
+Para utilizar Tailwind CSS en este proyecto, es necesario instalar las siguientes dependencias:
+
+- **tailwindcss**: El núcleo de Tailwind CSS.
+- **postcss**: Un procesador de CSS que permite utilizar plugins como Tailwind CSS.
+- **autoprefixer**: Un plugin de PostCSS que añade prefijos específicos del navegador a las reglas CSS.
+
+Instalación de dependencias:
+
+```bash
+npm install tailwindcss postcss autoprefixer
+```
+
+### Configuración de Tailwind CSS
+
+Después de instalar las dependencias, crea los archivos de configuración de Tailwind CSS y PostCSS:
+
+```bash
+npx tailwindcss init -p
+```
+
+Esto generará dos archivos: `tailwind.config.js` y `postcss.config.js`.
+
+### Configuración de `tailwind.config.js`
+
+El archivo `tailwind.config.js` contiene la configuración de Tailwind CSS. Aquí puedes personalizar los colores, fuentes y otros aspectos del diseño.
+
+```javascript
+// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        neutral: {
+          100: '#f5f5f5',
+          200: '#e5e5e5',
+          300: '#d4d4d4',
+          400: '#a3a3a3',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#262626',
+          900: '#171717',
+        },
+      },
+    },
+  },
+  // ...existing code...
+}
+```
+
+### Configuración de `postcss.config.js`
+
+El archivo `postcss.config.js` contiene la configuración de PostCSS y los plugins que se utilizarán.
+
+```javascript
+// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/postcss.config.js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```
+
 ## 🤝 Contribuciones
 
 Las contribuciones son bienvenidas. Si deseas contribuir, por favor sigue estos pasos:
 
-1. 🍴 Haz un fork del repositorio.
-2. 🌿 Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. 💻 Realiza tus cambios y haz commit (`git commit -am 'Agrega nueva funcionalidad'`).
-4. 📤 Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
-5. 🔄 Abre un Pull Request.
+1. Haz un fork del repositorio.
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -am 'Agrega nueva funcionalidad'`).
+4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
+5. Abre un Pull Request.
 
 ## 📄 Licencia
 
@@ -272,47 +340,3 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 - **Configuración de Tailwind CSS**: Puedes personalizar los colores, fuentes y otros aspectos del diseño en el archivo `tailwind.config.js`.
 - **Estilos Personalizados**: Puedes agregar estilos personalizados en el archivo `styles.css`.
-
-### Ejemplo de Uso
-
-```html
-<!-- filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/public/index.html -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <!-- ...existing code... -->
-</head>
-<body>
-  <div class="container mx-auto p-8 max-w-6xl bg-gray-100 rounded-lg shadow-lg border border-neutral-400">
-    <h1 class="text-4xl font-bold text-center text-purple-500 mb-6">Registro de Gaseosas</h1>
-    <form id="gaseosaForm" class="mb-6 bg-gray-200 p-6 rounded-lg shadow-md">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-200">
-        <!-- ...existing code... -->
-      </div>
-      <button type="button" id="openConfirmModal"
-        class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 text-sm w-1/2 mx-auto">Registrar
-        Gaseosa</button>
-    </form>
-    <!-- ...existing code... -->
-  </div>
-  <!-- ...existing code... -->
-  <script src="app.js"></script>
-</body>
-</html>
-```
-
-```javascript
-// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/public/app.js
-document.addEventListener('DOMContentLoaded', () => {
-  // Lógica para manejar el registro de gaseosas
-  // ...existing code...
-});
-```
-
-```css
-/* filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/public/styles.css */
-/* Estilos personalizados */
-body {
-  font-family: 'Inter', sans-serif;
-}
-/* ...existing code... */
