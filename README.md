@@ -15,6 +15,10 @@ Este proyecto es una aplicación web para registrar y gestionar la venta de gase
 - Tailwind CSS
 - JavaScript
 - Font Awesome
+- Express
+- Neon
+- PostgreSQL
+- CORS
 
 ## 📁 Estructura del Proyecto
 
@@ -25,6 +29,14 @@ Este proyecto es una aplicación web para registrar y gestionar la venta de gase
 │   ├── index.html
 │   ├── styles.css
 │   └── app.js
+├── server/
+│   ├── server.js
+│   ├── controllers/
+│   │   └── gaseosasController.js
+│   ├── models/
+│   │   └── gaseosa.js
+│   └── routes/
+│       └── gaseosasRoutes.js
 ├── tailwind.config.js
 └── README.md
 ```
@@ -39,7 +51,7 @@ Este proyecto es una aplicación web para registrar y gestionar la venta de gase
    ```bash
    cd /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2
    ```
-3. Instala las dependencias de Tailwind CSS.
+3. Instala las dependencias de Node.js.
    ```bash
    npm install
    ```
@@ -238,70 +250,101 @@ body {
 
 ## 📦 Dependencias
 
-### Dependencias de Tailwind CSS
+### Dependencias de Node.js
 
-Para utilizar Tailwind CSS en este proyecto, es necesario instalar las siguientes dependencias:
+Para utilizar las funcionalidades del backend en este proyecto, es necesario instalar las siguientes dependencias:
 
-- **tailwindcss**: El núcleo de Tailwind CSS.
-- **postcss**: Un procesador de CSS que permite utilizar plugins como Tailwind CSS.
-- **autoprefixer**: Un plugin de PostCSS que añade prefijos específicos del navegador a las reglas CSS.
+- **express**: Un framework web para Node.js.
+- **neon**: Un cliente para PostgreSQL.
+- **pg**: Un cliente de PostgreSQL para Node.js.
+- **cors**: Un middleware para habilitar CORS (Cross-Origin Resource Sharing).
 
 Instalación de dependencias:
 
 ```bash
-npm install tailwindcss postcss autoprefixer
+npm install express neon pg cors
 ```
 
-### Configuración de Tailwind CSS
+### Configuración del Servidor
 
-Después de instalar las dependencias, crea los archivos de configuración de Tailwind CSS y PostCSS:
-
-```bash
-npx tailwindcss init -p
-```
-
-Esto generará dos archivos: `tailwind.config.js` y `postcss.config.js`.
-
-### Configuración de `tailwind.config.js`
-
-El archivo `tailwind.config.js` contiene la configuración de Tailwind CSS. Aquí puedes personalizar los colores, fuentes y otros aspectos del diseño.
+El archivo `server.js` contiene la configuración del servidor utilizando Express.
 
 ```javascript
-// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/tailwind.config.js
-module.exports = {
-  theme: {
-    extend: {
-      colors: {
-        neutral: {
-          100: '#f5f5f5',
-          200: '#e5e5e5',
-          300: '#d4d4d4',
-          400: '#a3a3a3',
-          500: '#737373',
-          600: '#525252',
-          700: '#404040',
-          800: '#262626',
-          900: '#171717',
-        },
-      },
-    },
-  },
-  // ...existing code...
-}
+// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/server/server.js
+const express = require('express');
+const cors = require('cors');
+const gaseosasRoutes = require('./routes/gaseosasRoutes');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.json());
+app.use('/api/gaseosas', gaseosasRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 ```
 
-### Configuración de `postcss.config.js`
+### Controladores
 
-El archivo `postcss.config.js` contiene la configuración de PostCSS y los plugins que se utilizarán.
+El archivo `gaseosasController.js` contiene la lógica para manejar las operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para las gaseosas.
 
 ```javascript
-// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/postcss.config.js
+// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/server/controllers/gaseosasController.js
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+const getGaseosas = async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM gaseosas');
+    res.status(200).json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const createGaseosa = async (req, res) => {
+  const { sabor, cantidad, tamaño, valor_total, estado, modo_pago, nombre_persona } = req.body;
+  try {
+    const result = await pool.query(
+      'INSERT INTO gaseosas (sabor, cantidad, tamaño, valor_total, estado, modo_pago, nombre_persona) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      [sabor, cantidad, tamaño, valor_total, estado, modo_pago, nombre_persona]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// ...other CRUD operations...
+
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
-}
+  getGaseosas,
+  createGaseosa,
+  // ...other exports...
+};
+```
+
+### Rutas
+
+El archivo `gaseosasRoutes.js` define las rutas para las operaciones CRUD de las gaseosas.
+
+```javascript
+// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/server/routes/gaseosasRoutes.js
+const express = require('express');
+const { getGaseosas, createGaseosa } = require('../controllers/gaseosasController');
+
+const router = express.Router();
+
+router.get('/', getGaseosas);
+router.post('/', createGaseosa);
+// ...other routes...
+
+module.exports = router;
 ```
 
 ## 🤝 Contribuciones
@@ -340,3 +383,22 @@ Este proyecto está bajo la Licencia MIT. Consulta el archivo `LICENSE` para má
 
 - **Configuración de Tailwind CSS**: Puedes personalizar los colores, fuentes y otros aspectos del diseño en el archivo `tailwind.config.js`.
 - **Estilos Personalizados**: Puedes agregar estilos personalizados en el archivo `styles.css`.
+
+## 🏆 Mérito del Proyecto
+
+El mérito de este proyecto radica en la modernización de una empresa que gestionaba sus registros en papel, llevándola a una plataforma digital eficiente y accesible. Esta transformación ha permitido una mejor gestión de los datos, mayor accesibilidad y una interfaz de usuario más intuitiva.
+
+## 📸 Pantallazos
+
+A continuación, se presentan algunos pantallazos de la aplicación:
+
+![Screenshot 2025-02-21 144556](https://github.com/user-attachments/assets/b4d533dc-42e0-4d30-9419-eed405383f18)
+![Screenshot 2025-02-21 144607](https://github.com/user-attachments/assets/3fef7e88-a72e-4df6-9937-cfff72925a51)
+![Screenshot 2025-02-21 144622](https://github.com/user-attachments/assets/58694da2-b1df-4969-89b9-e8b2987b0284)
+![Screenshot 2025-02-21 144630](https://github.com/user-attachments/assets/4f641cad-511e-4604-bfb2-f9378f4d3e5c)
+![Screenshot 2025-02-21 144650](https://github.com/user-attachments/assets/9399192c-7de6-4274-9910-300415039b71)
+
+
+## 📧 Contacto
+
+Si tienes alguna pregunta o necesitas más información, puedes contactarme a través de mi correo electrónico: [tuemail@example.com](mailto:tuemail@example.com).
