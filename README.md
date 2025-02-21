@@ -4,17 +4,17 @@ Este proyecto es una aplicación web para registrar y gestionar la venta de gase
 
 ## ✨ Características
 
-- Registro de ventas de gaseosas con detalles como sabor, cantidad, tamaño, valor total, estado, modo de pago y nombre de la persona.
-- Filtrado de registros por fecha, modo de pago, tamaño, cantidad y estado.
-- Edición y eliminación de registros existentes.
-- Diseño responsivo que se adapta a diferentes tamaños de pantalla.
+- 📋 Registro de ventas de gaseosas con detalles como sabor, cantidad, tamaño, valor total, estado, modo de pago y nombre de la persona.
+- 🔍 Filtrado de registros por fecha, modo de pago, tamaño, cantidad y estado.
+- ✏️ Edición y 🗑️ eliminación de registros existentes.
+- 📱 Diseño responsivo que se adapta a diferentes tamaños de pantalla.
 
 ## 🛠️ Tecnologías Utilizadas
 
-- HTML5
-- Tailwind CSS
-- JavaScript
-- Font Awesome
+- 🌐 HTML5
+- 🎨 Tailwind CSS
+- 📜 JavaScript
+- 🌟 Font Awesome
 
 ## 📁 Estructura del Proyecto
 
@@ -31,15 +31,15 @@ Este proyecto es una aplicación web para registrar y gestionar la venta de gase
 
 ## 🛠️ Instalación
 
-1. Clona el repositorio en tu máquina local.
+1. 🌀 Clona el repositorio en tu máquina local.
    ```bash
    git clone <URL_DEL_REPOSITORIO>
    ```
-2. Navega al directorio del proyecto.
+2. 📂 Navega al directorio del proyecto.
    ```bash
    cd /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2
    ```
-3. Instala las dependencias de Tailwind CSS.
+3. 📦 Instala las dependencias de Tailwind CSS.
    ```bash
    npm install
    ```
@@ -75,23 +75,23 @@ module.exports = {
 
 ### 📝 Registro de Gaseosas
 
-1. Abre el archivo `index.html` en tu navegador.
-2. Completa el formulario de registro con los detalles de la gaseosa.
-3. Haz clic en el botón "Registrar Gaseosa" para abrir el modal de confirmación.
-4. Confirma el registro para agregar la gaseosa a la lista.
+1. 🌐 Abre el archivo `index.html` en tu navegador.
+2. 🖊️ Completa el formulario de registro con los detalles de la gaseosa.
+3. ✔️ Haz clic en el botón "Registrar Gaseosa" para abrir el modal de confirmación.
+4. ✅ Confirma el registro para agregar la gaseosa a la lista.
 
 ### 🔍 Filtrado de Registros
 
-1. Utiliza los campos de filtro para seleccionar los criterios deseados.
-2. Haz clic en "Aplicar Filtros" para ver los registros que coinciden con los criterios.
-3. Haz clic en "Eliminar Filtros" para restablecer los filtros y ver todos los registros.
+1. 🗂️ Utiliza los campos de filtro para seleccionar los criterios deseados.
+2. 🔍 Haz clic en "Aplicar Filtros" para ver los registros que coinciden con los criterios.
+3. ❌ Haz clic en "Eliminar Filtros" para restablecer los filtros y ver todos los registros.
 
 ### ✏️🗑️ Edición y Eliminación de Registros
 
-1. Haz clic en el icono de edición junto al registro que deseas editar.
-2. Completa los campos en el modal de edición y haz clic en "Guardar".
-3. Haz clic en el icono de eliminación junto al registro que deseas eliminar.
-4. Confirma la eliminación en el modal de confirmación.
+1. ✏️ Haz clic en el icono de edición junto al registro que deseas editar.
+2. 🖊️ Completa los campos en el modal de edición y haz clic en "Guardar".
+3. 🗑️ Haz clic en el icono de eliminación junto al registro que deseas eliminar.
+4. ✅ Confirma la eliminación en el modal de confirmación.
 
 ## 📱💻 Diseño Responsivo
 
@@ -130,15 +130,121 @@ La tabla de registros tiene un contenedor con scroll horizontal para manejar reg
 </div>
 ```
 
+## 🖥️ Backend y Archivos JavaScript
+
+### app.js
+
+El archivo `app.js` contiene la lógica de la aplicación, incluyendo la gestión de formularios, modales y filtrado de registros.
+
+#### Funcionalidades del archivo `app.js`
+
+- **Registro de Gaseosas**: Maneja la lógica para registrar nuevas gaseosas.
+- **Modales**: Controla la apertura y cierre de los modales de confirmación, edición y eliminación.
+- **Filtrado de Registros**: Aplica y elimina filtros para mostrar registros específicos.
+
+```javascript
+// filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/public/app.js
+document.addEventListener('DOMContentLoaded', () => {
+  // Lógica para manejar el registro de gaseosas
+  const gaseosaForm = document.getElementById('gaseosaForm');
+  const gaseosasList = document.getElementById('gaseosasList');
+  const confirmModal = document.getElementById('confirmModal');
+  const editModal = document.getElementById('editModal');
+  const deleteModal = document.getElementById('deleteModal');
+
+  // Función para abrir el modal de confirmación
+  document.getElementById('openConfirmModal').addEventListener('click', () => {
+    confirmModal.classList.remove('hidden');
+  });
+
+  // Función para cerrar el modal de confirmación
+  document.getElementById('cancelRegister').addEventListener('click', () => {
+    confirmModal.classList.add('hidden');
+  });
+
+  // Función para confirmar el registro
+  document.getElementById('confirmRegister').addEventListener('click', () => {
+    // Lógica para registrar la gaseosa
+    confirmModal.classList.add('hidden');
+  });
+
+  // Función para abrir el modal de edición
+  gaseosasList.addEventListener('click', (event) => {
+    if (event.target.classList.contains('edit-button')) {
+      editModal.classList.remove('hidden');
+    }
+  });
+
+  // Función para cerrar el modal de edición
+  document.getElementById('cancelEdit').addEventListener('click', () => {
+    editModal.classList.add('hidden');
+  });
+
+  // Función para guardar los cambios de edición
+  document.getElementById('saveEdit').addEventListener('click', () => {
+    // Lógica para guardar los cambios
+    editModal.classList.add('hidden');
+  });
+
+  // Función para abrir el modal de eliminación
+  gaseosasList.addEventListener('click', (event) => {
+    if (event.target.classList.contains('delete-button')) {
+      deleteModal.classList.remove('hidden');
+    }
+  });
+
+  // Función para cerrar el modal de eliminación
+  document.getElementById('cancelDelete').addEventListener('click', () => {
+    deleteModal.classList.add('hidden');
+  });
+
+  // Función para confirmar la eliminación
+  document.getElementById('confirmDelete').addEventListener('click', () => {
+    // Lógica para eliminar el registro
+    deleteModal.classList.add('hidden');
+  });
+
+  // Función para aplicar filtros
+  document.getElementById('applyFilters').addEventListener('click', () => {
+    // Lógica para aplicar filtros
+  });
+
+  // Función para eliminar filtros
+  document.getElementById('clearFilters').addEventListener('click', () => {
+    // Lógica para eliminar filtros
+  });
+});
+```
+
+## 🎨 Archivos CSS
+
+### styles.css
+
+El archivo `styles.css` contiene estilos personalizados adicionales que complementan los estilos de Tailwind CSS.
+
+#### Funcionalidades del archivo `styles.css`
+
+- **Estilos Personalizados**: Define estilos adicionales que no están cubiertos por Tailwind CSS.
+- **Tipografía**: Configura la fuente principal de la aplicación.
+
+```css
+/* filepath: /c:/Users/cmonroyitos/Documents/Proyectos/Registro_Gaseosas2/public/styles.css */
+/* Estilos personalizados */
+body {
+  font-family: 'Inter', sans-serif;
+}
+/* ...existing code... */
+```
+
 ## 🤝 Contribuciones
 
 Las contribuciones son bienvenidas. Si deseas contribuir, por favor sigue estos pasos:
 
-1. Haz un fork del repositorio.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios y haz commit (`git commit -am 'Agrega nueva funcionalidad'`).
-4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
-5. Abre un Pull Request.
+1. 🍴 Haz un fork del repositorio.
+2. 🌿 Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. 💻 Realiza tus cambios y haz commit (`git commit -am 'Agrega nueva funcionalidad'`).
+4. 📤 Haz push a la rama (`git push origin feature/nueva-funcionalidad`).
+5. 🔄 Abre un Pull Request.
 
 ## 📄 Licencia
 
